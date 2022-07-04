@@ -1,1 +1,124 @@
-<p>no-comunes works!</p>
+<div class="text-layout">
+  <h1>Pipes no tan comunes</h1>
+  <p>Pipes incluidos en Angular - Usualmente en el CommonModule</p>
+</div>
+
+<div class="grid">
+  <div class="sm:col-12 md:col-6 lg:col-6">
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      Saludos {{ nombre }}, es un placer {{ genero | i18nSelect: inviteMap }} a nuestro evento.
+      <hr>
+      <!--
+      <p-button
+      icon="pi pi-user"
+      iconPos="left"
+      label="Cambiar Persona"
+      styleClass="p-button-help p-button-sm"
+      [loading]="loading"
+      (onClick)="cambiarPersona()" >
+      </p-button>
+      -->
+      <button
+      type="button"
+      pButton
+      icon="pi pi-user"
+      iconPos="left"
+      label="Cambiar Persona"
+      class="p-button-help p-button-sm"
+      [loading]="loading"
+      (click)="cambiarPersona()">
+      </button>
+    </p-fieldset>
+  </div>
+
+  <div class="sm:col-12 md:col-6 lg:col-6">
+    <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+      Actualmente {{clientes.length | i18nPlural: clientesMapa}}
+      <hr>
+      <p-button
+      *ngIf="clientes.length>0 else btnRestaurarClientes"
+      icon="pi pi-trash"
+      iconPos="left"
+      label="Borrar Cliente"
+      styleClass="p-button-help p-button-sm"
+      [loading]="loading"
+      (onClick)="borrarCliente()" >
+      </p-button>
+
+      <ng-template #btnRestaurarClientes>
+      <p-button
+        icon="pi pi-undo"
+        iconPos="left"
+        label="Restaurar Cliente"
+        styleClass="p-button-primary p-button-sm"
+        [loading]="loading"
+        (onClick)="restaurarCliente()" >
+      </p-button>
+      </ng-template>
+    </p-fieldset>
+  </div>
+
+  <div class="sm:col-12 md:col-6 lg:col-4">
+    <p-fieldset legend="Slice Pipe - Arreglo" [toggleable]="true">
+      <b>Arreglo - Original</b>
+      <pre>{{clientes}}</pre>
+
+      <b>Arreglo - slice:0:2</b>
+      <pre>{{clientes | slice:0:2}}</pre>
+
+      <b>Arreglo - slice:3:3</b>
+      <pre>{{clientes | slice:3:3}}</pre>
+    </p-fieldset>
+  </div>
+  <div class="sm:col-12 md:col-6 lg:col-4">
+    <p-fieldset legend="Slice Pipe - Texto" [toggleable]="true">
+      <b>Texto - Original</b>
+      <pre>{{nombre}}</pre>
+
+      <b>Texto - slice:0:2</b>
+      <pre>{{nombre | slice:0:2}}</pre>
+    </p-fieldset>
+  </div>
+  <div class="sm:col-12 md:col-6 lg:col-4">
+    <p-fieldset legend="Slice Pipe - Decimal" [toggleable]="true">
+      <b>Decimal - Original</b>
+      <pre>{{numero}}</pre>
+
+      <b>Decimal - slice:0:(''+numero).length-2}}</b>
+      <pre>{{''+numero | slice:0:(''+numero).length-2}}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="sm:col-12 md:col-6 lg:col-6">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of persona | keyvalue">
+          <!--{{item['value']}}-->
+          <b>{{item.key | titlecase}}</b>: {{item.value}}
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="sm:col-12 md:col-6 lg:col-6">
+    <p-fieldset legend="Async Pipe" [toggleable]="true">
+      <b>Async de un Observable</b>
+      <pre *ngIf="!(miObservable | async)">Resolviendo observable...</pre>
+      <pre>{{miObservable | async}}</pre>
+
+      <b>Async de una Promesa</b>
+      <pre *ngIf="!(valorPromesa | async)">Resolviendo promesa...</pre>
+      <pre>{{valorPromesa | async}}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="sm:col-12 md:col-12 lg:col-12">
+    <p-fieldset legend="Json Pipe" [toggleable]="true">
+      <b>Objeto Persona</b>
+      <pre>{{persona | json}}</pre>
+
+      <b>Arreglo de Heroes</b>
+      <pre>{{heroes | json}}</pre>
+    </p-fieldset>
+  </div>
+</div>

@@ -40,3 +40,40 @@ imports: [
   ...
   ButtonModule
 ],
+
+# INSTALACION DE PRIMEFLEX
+
+Usaremos la versión 3 en lugar de la 2, en caso de necesitarse la versión anterior utilizar el siguiente comando:
+
+npm install primeflex --> Última versión
+npm install primeflex@2.0.0 --> Versión 2.0.0
+
+# APUNTES
+1. En el currency pipe utilizar la siguiente página para saber el currencyCode:
+https://en.wikipedia.org/wiki/ISO_4217
+
+2. Cuando se imprime directamente un objeto en el HTML como por ejemplo un array sin asociarlo directamente
+a ninguna directiva como el ngFor, Angular asume que solo se quiere mostrar el contenido de dicho array y 
+si se manipula dicho objeto desde otros controles simplemente no se refrezca el resultado que se esta mostrando
+en pantalla: 
+
+<pre>{{clientes}}</pre>
+
+3. En el slice pipe el primer número que marca el "start" es incluyente es decir que el objeto encontrado
+se incluye en el resultado que se va a devolver, y el segundo número es decir el "end" es excluyente,
+es decir no se va a mostrar en el resultado, por esta razón si aun arreglo le colocamos lo siguiente:
+
+slice:3:3 => Aquí el resultado sería vacio ya que estamos diciendo que empiece en el objeto de posición
+3, y que llegue hasta el mismo y como el fin es excluyente no se muestra nada en el resultado.
+
+4. El Json Pipe tiene una limitación, la cúal consiste en que si se quiere imprimir un objeto que contiene
+métodos, ya sean que calculen o impriman atributos del mismo objeto, entonces aparecerá un error de Angular
+que indicará que el objeto es muy complejo para ser mostrado.
+
+5. El AsyncPipe, desenvuelve el valor primitivo de una tarea asincrona. El objeto que se pasará a este pipe
+debe ser un observable o una promesa, ya que lo que hace el AsynPipe es suscribirse internamente al observable
+y cada una de sus emisiones es lo que se imprime en pantalla.
+
+En el caso de realizar un async a un observable, cada vez que se invoque la sentencia "(miObservable | async)"
+el pipe se esta suscribiendo por cada invocación al observable, es decir se esta instanciando por cada llamada,
+mientras que cuando el async se realiza sobre una promesa esta se asocia a dicha promesa una sola vez.
