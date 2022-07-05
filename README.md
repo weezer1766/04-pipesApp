@@ -48,6 +48,17 @@ Usaremos la versión 3 en lugar de la 2, en caso de necesitarse la versión ante
 npm install primeflex --> Última versión
 npm install primeflex@2.0.0 --> Versión 2.0.0
 
+# INSTALACIÓN TABLE DE PRIME NG
+
+Para utilizar el componente table dentro de nuestra aplicación debemos instalar el siguiente paqueta:
+npm install @angular/cdk --save
+
+En caso de que salga algún error se deberá tratar de instalar una versión anterior en este caso la que encontre fue:
+https://snyk.io/vuln/npm:%40angular%2Fcdk --> VERSIONES DEL CDK
+
+npm install @angular/cdk@13.3.9
+npm install @angular/cdk@11.0.7 --> LA VERSION INSTALADA EN EL CURSO NO USAR!!!
+
 # APUNTES
 1. En el currency pipe utilizar la siguiente página para saber el currencyCode:
 https://en.wikipedia.org/wiki/ISO_4217
@@ -77,3 +88,7 @@ y cada una de sus emisiones es lo que se imprime en pantalla.
 En el caso de realizar un async a un observable, cada vez que se invoque la sentencia "(miObservable | async)"
 el pipe se esta suscribiendo por cada invocación al observable, es decir se esta instanciando por cada llamada,
 mientras que cuando el async se realiza sobre una promesa esta se asocia a dicha promesa una sola vez.
+
+6. Si se quiere crear una copia de un arreglo en el HTML se puede utilizar el slice:0 por ejemplo:
+
+<p-table [value]="heroes | slice:0" responsiveLayout="scroll">
